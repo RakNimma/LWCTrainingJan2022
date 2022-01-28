@@ -1,0 +1,31 @@
+<template>
+    <lightning-card title="ForEach Demo" icon-name="custom:custom14">
+            <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_striped">
+                    <tr>
+                        <th class="slds-var-p-around_x-small">Index</th>
+                        <th class="slds-var-p-around_x-small">Id</th>
+                        <th class="slds-var-p-around_x-small">Name</th>
+                        <th class="slds-var-p-around_x-small">Email</th>
+                    </tr>
+                    <template for:each={contacts} for:item="contact" for:index="i">
+                        <tr key={contact.Id}>
+                            <td class="slds-var-p-around_x-small">{i}</td>
+                            <td class="slds-var-p-around_x-small">{contact.Id}</td>
+                            <td class="slds-var-p-around_x-small">{contact.Name}</td>
+                            <td class="slds-var-p-around_x-small">{contact.Email}</td>
+                        </tr>    
+                    </template>
+            </table>
+    </lightning-card>
+    <lightning-card title="Iterator Demo" icon-name="custom:custom14">
+        <ul class="slds-var-m-around_medium">
+            <template iterator:it={contacts}>
+                <li key={it.value.Id}>
+                    <div if:true={it.first} class="list-first"></div>
+                    {it.value.Name} - {it.value.Email}
+                    <div if:true={it.last} class="list-last"></div>
+                </li>
+            </template>
+        </ul>
+    </lightning-card>
+</template>

@@ -1,0 +1,31 @@
+<template>
+    <lightning-card title="HelloConditionalRendering" icon-name="custom:custom14">
+        <div class="slds-grid">
+            <div class="slds-col slds-var-m-around_medium">
+                <h1 style="color: indigo;"><b>Permanent Address</b> </h1>
+                <p>Enter Permanent address as govt Id proof</p>
+                <div class="slds-var-m-vertical_medium">
+                    <lightning-input type="text" label="Address Line 1" name="add1" onchange={handleInputChange}></lightning-input>
+                    <lightning-input type="text" label="Address Line 2" name="add2" onchange={handleInputChange}></lightning-input>
+                    <lightning-input type="text" label="LandMark" name="lmk" onchange={handleInputChange}></lightning-input>
+                    <lightning-input type="text" label="Zip Code" name="zcode" onchange={handleInputChange}></lightning-input>
+                </div>
+            </div>
+            <div class="slds-col slds-var-m-around_medium">
+                <h1 style="color: indigo;"><b>Current Address </b></h1>
+                <lightning-input type="checkbox" label="Same as Permanent address" onchange={handleChange}></lightning-input>
+                <div class="slds-var-m-around_medium">
+                    <template if:true={isSame}>
+                        <div class="slds-var-m-vertical_medium">
+                            <lightning-input type="text" label="Address Line 1" value={address1}></lightning-input>
+                            <lightning-input type="text" label="Address Line 2" value={address2}></lightning-input>
+                            <lightning-input type="text" label="LandMark" value={lmark}></lightning-input>
+                            <lightning-input type="text" label="Zip Code" value={zipcode}></lightning-input>
+                        </div>
+                    </template>
+                </div>
+            </div>
+          </div>
+        
+    </lightning-card>
+</template>
