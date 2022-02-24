@@ -1,0 +1,66 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 02-23-2022
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<template>
+    <lightning-card title="" icon-name="">
+        <lightning-layout multiple-rows="true">
+            <lightning-layout-item size="12" >
+                    <div class="slds-form-element slds-var-m-around_x-small">
+                            <div class="slds-form-element__control">
+                                    <lightning-input type="Search" 
+                                                     placeholder="Search Books in Library..." 
+                                                     value={booktitle}
+                                                     onchange={handleBooksearch} ></lightning-input>
+                            </div>
+                        </div> 
+            </lightning-layout-item>
+          </lightning-layout>
+        <div if:true={bookList}>
+          <lightning-layout-item size="12" >
+            <ul class="slds-list_horizontal slds-has-dividers_right slds-var-m-around_x-small">
+              <p class="slds-text-body_small slds-var-p-right_small"><b>Displaying Results:</b></p>
+              <p class="slds-text-body_small">{bookList.length}</p>
+            </ul>
+          </lightning-layout-item>
+          <lightning-layout multiple-rows="true">
+            <template for:each={bookList} for:item="bklst" for:index="index">
+              <lightning-layout-item  size ="3" class="slds-truncate" key={bklst.Id}>
+                    <article class="slds-tile custom-box slds-box slds-p-around_medium">
+                        <p class="slds-tile slds-truncate" title="Title">
+                          <lightning-button variant="base" label={bklst.Name} title={bklst.Id} onclick={handleClick} ></lightning-button>
+                        </p>
+                        <div class="slds-tile__detail slds-truncate">
+                            <img src={bklst.image_url__c} class="slds-var-m-around_x-small">
+                            <ul class="slds-list_horizontal slds-has-dividers_right slds-var-m-around_x-small">
+                              <p class="slds-text-body_small slds-var-p-right_small"><b>Author:</b></p>
+                              <p class="slds-text-body_small">{bklst.Author__c}</p>
+                            </ul>
+                            <ul class="slds-list_horizontal slds-has-dividers_right slds-var-m-around_x-small">
+                              <p class="slds-text-body_small slds-var-p-right_small"><b>Publisher:</b></p>
+                              <p class="slds-text-body_small">{bklst.Publisher__c}</p>
+                            </ul>
+                           <ul class="slds-list_horizontal slds-has-dividers_right slds-var-m-around_x-small">
+                              <p class="slds-text-body_small slds-var-p-right_small"><b>ISBN13:</b></p>
+                              <p class="slds-text-body_small">{bklst.ISBN13__c}</p>
+                          </ul>
+                          <ul class="slds-list_horizontal slds-has-dividers_right slds-var-m-around_x-small">
+                            <p class="slds-text-body_small slds-var-p-right_small"><b>Year Published:</b></p>
+                            <p class="slds-text-body_small">{bklst.Year_Published__c}</p>
+                          </ul>
+                          <ul class="slds-list_horizontal slds-has-dividers_right slds-var-m-around_x-small">
+                            <p class="slds-text-body_small slds-var-p-right_small"><b>Average Rating:</b></p>
+                            <p class="slds-text-body_small">{bklst.Average_Rating__c}</p>
+                          </ul>
+                        </div>
+                      </article>
+              </lightning-layout-item>
+              </template>
+            </lightning-layout>
+        </div>
+  
+    </lightning-card>
+</template>
