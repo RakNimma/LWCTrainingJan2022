@@ -1,0 +1,59 @@
+<!-- sldsValidatorIgnore -->
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 03-02-2022
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<template>
+    <div class="slds-card">
+        <h3 class="slds-var-m-around_small">
+            <lightning-button-icon icon-name="utility:search"  size="medium"  variant="bare" alternative-text="search"></lightning-button-icon>
+            <b> Search Account Record Opportunities:</b>
+        </h3>
+        <div class="slds-form-element">
+            <div class="slds-form-element__control">
+                <div class="slds-combobox_container">
+                    <div id="box" class={boxClass} aria-expanded="true" aria-haspopup="listbox" role="combobox">
+                        <div class="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_right" role="none">
+                            <template if:true={isValueSelected}>
+                                <lightning-card  variant="Narrow"  title={selectedName} icon-name="standard:opportunity">
+                                    <lightning-progress-indicator current-step={selectedRec.StageName} type="path" variant="base">
+                                        <template for:each={pickvalues} for:item="step">
+                                            <lightning-progress-step label={step.label} value={step.value} key={step.label}></lightning-progress-step>
+                                        </template>
+                                    </lightning-progress-indicator>
+                                    <p><b>Account Name:</b>{selectedRec.Account.Name}</p>
+                                    <p><b>Amount :</b>{selectedRec.Amount}</p>
+                                    <p><b>Closed Date:</b>{selectedRec.CloseDate}</p>
+                                    <p><b>Stage:</b>{selectedRec.StageName}</p>
+                                   
+                                </lightning-card>
+                            </template>
+                            <template if:false={isValueSelected}>
+                                <div class="slds-var-m-around_x-small">
+                                    <lightning-input class={inputClass} type="search" id="input" value={searchTerm}
+                                                     onclick={handleClick} onblur={onBlur} onchange={onChange}
+                                                     variant="label-hidden" autocomplete="off" placeholder={searchPlaceholder}>
+                                    </lightning-input>
+                                </div>
+                                <ul role="presentation">
+                                    <template for:each={records} for:item="record">
+                                     <li key={record.Id} onclick={onSelect} data-id={record.Id} role="presentation" data-value={record.Name} class="slds-listbox__item">
+                                       <div id={record.Id} class="slds-media slds-listbox__option slds-listbox__option_plain slds-media_small" role="option">
+                                           <lightning-card  variant="Narrow"  title={record.Name} icon-name="standard:opportunity">
+                                           </lightning-card>
+                                       </div>
+                                     </li>
+                                    </template>
+                                     </ul>
+                            </template>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
