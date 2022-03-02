@@ -1,0 +1,29 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 03-02-2022
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<template>
+    <lightning-card  variant="Narrow"  title="Contact List Subscription" icon-name="standard:contact">
+        <div class="slds-grid">
+            <div class="slds-col slds-size_1-of-3">
+                <lightning-button variant="brand" label={subscribe} title="Subscribe" onclick={subscribeToMessageChannel} class="slds-var-m-around_x-small"></lightning-button>
+            </div>
+            <div class="slds-col slds-size_1-of-3">
+                <lightning-button variant="destructive" label={unsubscribe} title="UnSubscribe" onclick={unsubscribeToMessageChannel} class="slds-var-m-around_x-small"></lightning-button>
+            </div>
+            <div class="slds-col slds-size_1-of-3">
+                <lightning-button variant="brand" label="Clear" title="Clear" onclick={handleClear} class="slds-var-m-around_x-small"></lightning-button>
+            </div>
+        </div>
+        <div class="slds-var-p-around_xxx-small">
+            <p>Message Recieved:{currentContact}</p>
+            <p>Contacts Added:</p>
+            <template if:true={messages} for:each={messages} for:item="message" for:index="index">
+                <div key={message.id}>{message.name}</div>
+            </template>
+        </div>
+    </lightning-card>
+</template>
